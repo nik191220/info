@@ -1,428 +1,695 @@
-# How to Solve the Layout Tasks on GitHub
-This document explains everything you need to solve GitHub Layout tasks and send them for review.
-
-- ❗ To avoid permissions issues, **DO NOT** place your projects folder on the `Desktop`.
-- ❗ There should be **NO SPACES** in the path, e.g., `C:\Users\Your Name\projects`.
-- It is better to put repositories into `D:\projects` or `C:\Users\YourName\projects` on Windows, or `/Users/YourName/projects` on MacOS.
-
-## Before Implementing the First Task on GitHub
-Connect GitHub to your Mate account.
-
-- Open your profile page on [the MA Platform](https://mate.academy/profile).
-- Scroll down and press the `Connect` button next to GitHub.
-- Confirm Mate Academy app authorization.
-
-## Follow These Instructions for All HTML/CSS Tasks on GitHub:
-
-1. [Open the task on the MA platform](#open-the-task-on-the-ma-platform)
-2. [Fork the repo](#fork-the-repo)
-3. [Check your forked repo URL](#check-the-url-of-the-forked-repo)
-4. [Clone the forked repo](#clone-the-forked-repo)
-5. [Open the project in IDE](#open-the-project-in-vscode)
-6. [Open the Terminal in your IDE](#open-the-terminal)
-7. [Run `npm i`](#codenpm-installcode-or-just-codenpm-icode)
-8. [Run `npm start` to open the page in a browser](#codenpm-startcode-to-open-the-page)
-9. [Open another terminal](#open-one-more-terminal-for-the-next-steps)
-10. [Create the `develop` branch](#create-the-codedevelopcode-branch)
-11. [Update DEMO and TEST REPORT links](#update-codedemo-linkcode-and-codetest-report-linkcode)
-12. [Implement the task](#implement-the-task-described-in-the-codereadmemdcode) 
-13. [Run `npm run lint` to check the code style](#codenpm-run-lintcode-to-check-the-code-style)
-14. [Run `npm t` to pass tests](#codenpm-testcode-to-check-if-solution-is-correct)
-15. [Run `git add ./src` to prepare your code for saving](#codegit-addcode-to-prepare-changed-files-for-saving)
-16. [Run `git commit -m 'add solution'` to save changes](#codegit-commitcode-to-save-changes)
-17. [Run `git push origin develop` to send your code to GitHub](#codegit-push-origin-developcode-to-send-your-code-to-github)
-18. [Run `npm run deploy` to publish your site to GitHub Pages](#codenpm-run-deploycode-to-publish-to-github-pages)
-19. [Create a Pull Request (PR) with a correct description](#create-a-pull-request-pr)
-20. [If you need to update your PR](#to-update-your-pr-repeat-steps-13-18-no-need-to-create-the-pr-one-more-time)
-
-- [NPM Commands](#npm-commands)
-- [Useful links](#useful-links)
-
-### 1. Open the Task on the MA Platform
-Click the `Make a fork` button. It will open the task repo on GitHub.
-
-### 2. Fork the Repo
-<details>
-  <summary><b>Click the `Fork` button on GitHub</b></summary>
-
-  ![How to fork the repo](./images/fork-the-repo.png)
-</details>
-
-### 3. Check the URL of the Forked Repo
-After the Fork process is finished, you should see the repo in your account (not the `mate-academy`).
-![After the repo fork](./images/after-the-repo-fork.png)
-
-Now you can check if it was synced to the MA platform.
-- Go back to the task on the MA platform.
-- The button should change to `Open the task`.
-- If not, reload the page.
-- Get back to the forked repo on GitHub.
+### HTML Formatting
 
 <details>
-  <summary><b>If you need to delete a forked repo</b></summary>
+  <summary>Use <b>2 spaces</b> for indentation in your file (not a <code>tab</code> character)</summary>
 
-  - Open project settings. ![Open project settings](./images/open-project-settings.png)
-  - Delete the repo. ![Delete the repo](./images/delete-the-repo.png)
-</details>
-
-### 4. Clone the Forked Repo
-Now you need to clone the forked project to your computer. Follow the next steps (and see screenshots below):
-
-- Click the green `Code` button.
-- Select the `HTTPS` tab.
-- Ensure the link contains your GitHub name (NOT `mate-academy`).
-- Copy the link.
-- Open **Git Bash** (Windows) or **ZSH** (macOS) in your projects folder (You installed it in the Git and Terminal course).
-- Run `pwd` in the terminal to check that you are in the `projects` folder.
-  - If not, navigate to it using the `cd` command with the required path.
-- Clone the repo by running the `git clone` command with the URL you copied on GitHub.
-    ```shell
-    git clone replace-this-with-the-URL-from-github
-    ```
-
-<details>
-  <summary><b>How to open Git Bash</b></summary>
-
-  ![Git Bash here](./images/git-bash-here.png)
-</details>
-<details>
-  <summary><b>How to paste the project URL to Terminal (Git Bash)</b></summary>
-
-  ![How to paste the URL into the terminal](./images/paste-url-to-terminal.png)
-</details>
-    
-![Clone the repo](./images/clone-the-repo.png)
-![Clone success](./images/clone-success.png)
-
-### 5. Open the Project in VSCode
-Now you need to open the project in your code editor (`VSCode`).
-- Run `code project-name` in the terminal (for example, `code layout_hello-world`).
-- You will see the project name as a root folder name in VSCode.
-
-![The project opened correctly](./images/project-in-vscode-correct.png)
-
-<details>
-  <summary><b>Project is opened WRONG</b></summary>
-
-  ![The project opened correctly](./images/project-in-vscode-wrong.png)
-</details>
-
-### 6. Open the Terminal
-- Use the shortcut ``ctrl + ` `` (Windows) or ``cmd + ` `` (MacOS).
-- Check if you are inside the project (The project name is the last part in the terminal).
-- Check if the terminal in VSCode is Git Bash (Windows) or ZSH (macOS).
-
-<details>
- <summary><b>Click here to see how to select the default terminal in VSCode</b></summary>
-
- - Choose the `Select default shell` option. ![Select default shell](./images/select-default-shell.png)
- - Select Git Bash (Windows) or zsh (macOS). ![Default shell popup](./images/default-shell-popup.png)
- - Close all the opened terminals.
- - All the new terminals will be Git Bash (or zsh).
-</details>
-
-### 7. `npm install` (or just `npm i`).
-And wait until it downloads all the packages and finishes.
-
-> Note: You should run it once for every new task.
-
-<details>
- <summary><b>If you don't have Node.js</b></summary>
-
- ![If you don't have Node.js](./images/if-you-dont-have-node-js.png)
+  > to make sure your formatting will look the same everiwhere
 </details>
 
 <details>
- <summary><b>If you run `npm i` outside the project</b></summary>
+  <summary>Remember about correct indentation between parent and child elements</summary>
 
- ![If you run npm install outside the project](./images/if-you-run-npm-i-outside-the-project.png)
+  > Each level of nesting, including text, contained inside the element, requires 2-space offset. 
+  Also blank line shouldn't be between parent and child elements.
+
+  GOOD example
+  ```html
+  <body>
+    <div>
+      <p>
+        Awesome text
+      </p>
+    </div>
+  </body>
+  ```
+
+  BAD example
+  ```html
+  <body>
+  <div>
+  <p>
+  Awesome text
+  </p>
+  </div>
+  </body>
+  ```
 </details>
-
-### 8. `npm start` to Open the Page
-
-The command in the terminal will never finish.
-
-- The command should open your browser at `http://localhost:8080/`.
-- At this point, you should see the starting markup of the page.
-- If the page is empty, add some text to the `<body>` in the `src/index.html` file.
-- The text should appear in the browser.
 
 <details>
- <summary><b>If the page is still empty after you added some text</b></summary>
+  <summary>Add empty lines between multiline sibling blocks of HTML</summary>
 
- - Update the page by pressing `ctrl + r` (`cmd + r` for macOS).
- - If the page is still empty, check if you saved the changes. ![Autosave is disabled](./images/autosave-is-disabled.png)
- - Enable autosave. ![Enable autosave](./images/enable-autosave.png)
+  > To add some "air" and simplify reading. But don't add them between parent and child elements.
+
+  GOOD Example
+  ```html
+  <ul>
+    <li class="nav__item">
+      <a href="#home">Home</a>
+    </li>
+
+    <li class="nav__item">
+      <a href="#shop">Shop</a>
+    </li>
+
+    <li class="nav__item">
+      <a href="#contacts">Contacts</a>
+    </li>
+  </ul>
+  ```
+
+  BAD Example
+  ```html
+  <ul>
+
+    <li class="nav__item">
+      <a href="#home">Home</a>
+    </li>
+    <li class="nav__item">
+      <a href="#shop">Shop</a>
+    </li>
+    <li class="nav__item">
+      <a href="#contacts">Contacts</a>
+    </li>
+
+  </ul>
+  ```
 </details>
 
 <details>
- <summary><b>If the page is opened at a different port (not :8080)</b></summary>
+  <summary>Keep your attributes correctly formatted</summary>
 
- - If you see a different port. ![Wrong port](./images/wrong-server-port.png)
- - It means you already have another terminal running the `npm start` command (maybe it is another project).
- - Stop the `npm start` command in the current terminal by pressing `ctrl + c` (all operating systems).
- - Close the other terminal running `npm start`.
- - Run the command again for your current project.
- - The URL should now be `http://localhost:8080/`.
- - If the URL is still wrong, just restart the computer.
+  > If the HTML-element has long attribute values or number of attributes is more than 2 - start each one,
+  including the first, on the new line with 2-space indentation related to tag.
+  Tag’s closing bracket should be on the same level as opening one.
+
+  GOOD Example
+  ```html
+  <input
+    type="text" 
+    name="surname" 
+    id="surname"
+    required
+  >
+  ```
+
+  BAD Examples
+  ```html
+  <input type="text" name="surname" 
+         id="surname" required>
+
+  <input type="text" 
+         name="surname" 
+         id="surname"
+         required>
+
+  <input
+  type="text" 
+  name="surname" 
+  id="surname"
+  required>
+
+  <input
+    type="text" 
+    name="surname" 
+    id="surname"
+    required>
+  ```
 </details>
 
-### 9. Open One More Terminal for the Next Steps.
+<details>
+  <summary>Lines of code have <code>80</code> chars max</summary>
+  
+  > It is just easier to read such lines
+</details>
 
-Use `+` or just press ``ctrl + shift + ` `` or ``cmd + shift + ` ``.
+### HTML Content
 
-![Open one more terminal](./images/open-one-more-terminal.png)
+<details>
+  <summary>Use semantic tags where possible</summary>
 
-### 10. Create the `develop` Branch
+  > Like `header`, `section`, `article`, `p`. It improves your page SEO and helps screen readers. `div` and `span` does not have any meaning
+</details>
 
-Run:
+<details>
+  <summary> <code>alt</code> attribute should describe the image content</summary>
+
+
+  GOOD example
+  ```html
+  <img alt="Samsung Galaxy S22 2022 8/128GB Green" />
+  ```
+
+  REALLY BAD example
+  ```html
+  <img alt="image" />
+  ```
+
+  STILL BAD example
+  ```html
+  <img alt="phone" />
+  ```
+</details>
+
+<details>
+  <summary>Class names represent the meaning of the content (not the styles or tag names)</summary>
+
+  GOOD example
+  ```html
+  <nav class="nav">
+    <ul class="nav__list">
+      ...
+      <li class="nav__item">
+        <a href="#apple" class="nav__link">Apple</a>
+      </li>
+    </ul>
+  </nav>
+  ```
+
+  BAD example
+  ```html
+  <nav class="no-padding">
+    <ul>
+      ...
+      <li class="li">
+        <a href="#apple" class="a-last-no-decoration">Apple</a>
+      </li>
+    </ul>
+  </nav>
+  ```
+</details>
+
+<details>
+  <summary>Don't use spaces in links</summary>
+
+  > Have you seen any link with literal space in it on the Internet? Remember, anchor links start with `#`
+</details>
+
+### CSS
+<details>
+  <summary>Don't use <code>*</code> selector (it impacts performance)</summary>
+
+  > Set styles only for elements that require them.
+  > Zeroing out your margins, paddings or other styles with '*' is still inefficient for browser.
+</details>
+
+<details>
+  <summary>Don't use tag names for styling (except <code>html</code> and <code>body</code>)</summary>
+
+  > Style all elements using `.classes` and if needed with `:pseudo-classes`, `pseudo-elements` and `[attributes]`
+
+  HTML Example
+  ```html
+  <nav class="nav">  
+    <ul class="nav__list">  
+      ...  
+    <ul>  
+  </nav>  
+  ```
+
+  GOOD CSS Example
+  ```css
+  .nav__list {
+    list-style: none
+  }
+  ```
+
+  BAD CSS Examples
+  ```css
+  ul {
+    list-style: none
+  }
+
+  nav ul {
+    list-style: none
+  }
+  ```
+</details>
+
+<details>
+  <summary>Remember to use fallback fonts - alternative font-family in case the main one doesn't work</summary>
+  
+  > [Explanation](https://www.w3schools.com/cssref/pr_font_font-family.asp)
+</details>
+
+<details>
+  <summary>Be consistent with your margins (Add only top or bottom, but not both)</summary>
+
+  > To avoid potential margin collapse
+</details>
+
+<details>
+  <summary>Don't fix container size (if there is no such a requirement)</summary>
+
+  > Let the content size dictate it. To avoid overflow or accidental scroll bar
+</details>
+
+<details>
+  <summary>
+    Hightlight clickable element with <code>cursor: pointer</code> and some <code>:hover</code> styles
+  </summary>
+
+  > It improves UX, and help users understand the page better
+</details>
+
+### BEM
+
+<details>
+  <summary>Create a separate file per each styles block</summary>
+
+  - If styles block has the same name as BEM block - create separate file for it
+</details>
+
+<details>
+  <summary>Follow naming convention <code>block__element--modifier</code></summary>
+
+  ```html
+  <div class="block-name block-name--modifier-name--modifier-value">
+    <p class="block-name__element-name block-name__element-name--modifier-name">
+      text
+    </p>
+  </div>
+  ```
+</details>
+
+### SASS
+
+<details>
+  <summary>Check your import syntax. It's differs from plain CSS</summary>
+
+  ```css
+  /* CSS */
+  @import url("filename.css");
+  ```
+
+  ```scss
+  /* SCSS */
+  @import "filename";
+  ```
+</details>
+
+<details>
+  <summary>Use variables for the main values</summary>
+
+  - Create variables only when value repeats more than once.
+  - Use descriptive names.
+</details>
+
+<details>
+  <summary>Don't use loops for styles that stay the same</summary>
+
+  - display and position are perfect examples for styles that stay the same.
+</details>
+
+<details>
+  <summary>Use mixins, functions, etc.</summary>
+
+  - These are powerful tools to get rid of repeatable code, but don't use them everywhere.
+</details>
+
+<details>
+  <summary>Use nesting</summary>
+
+  - Write pseudo-class, pseudo-element selectors inside general selector. As well as media queries.
+
+  GOOD Example
+  ```scss
+  &__buy-link {
+    display: flex;
+    margin-top: 20px;
+
+    &:hover {
+      color: blue;
+    }
+  }
+  ```
+
+  BAD Example
+  ```scss
+  &__buy-link {
+    display: flex;
+    margin-top: 20px;
+  }
+
+  &__buy-link:hover {
+    color: blue;
+  }
+  ```
+</details>
+
+### Typical BEM Mistakes in HTML
+
+<details>
+  <summary>An Element of Another Element</summary>
+
+  > An element belongs to a block, not to another element. 
+  > That's why the **prefix** — is the name of a block, not the name of another element.
+
+  ```html
+  <div class="example">
+    <ul class="example__list">
+
+      <!-- Wrong -->
+      <li class="example__list__item">...</li>
+      
+      <!-- Correct -->
+      <li class="example__item">...</li>
+
+    </ul>
+  </div>
+  ```
+</details>
+
+<details>
+  <summary>Using an Element Without Its Block's Prefix</summary>
+
+> The name of an element MUST contain the name of its block.
+
+```html
+<!-- Wrong -->
+<ul class="menu">
+  <li class="item">
+    Only if it's not a standalone block
+  </li>
+</ul>
+
+<!-- Correct -->
+<ul class="menu">
+  <li class="menu__item">...</li>
+</ul>
 ```
-git checkout -b develop
-```
-or
-```
-git switch -c develop
-```
 
+</details>
 <details>
-  <summary><b>If you see that the "develop" branch already exists</b></summary>
+  <summary>Using a Modifier Instead of an Element</summary>
 
-  ![Develop already exists](./images/develop-already-exists.png)
-  - Run `git branch` to see all existing branches. ![Show git branches](./images/show-git-branch.png)
-  - If `develop` is marked with `*`, then everything is correct.
-  - Otherwise, run `git checkout develop` (without the `-b` key). ![Switch to develop](./images/switch-to-develop.png)
+> Double underscore is used to separate the name of a block and the name of an element. 
+
+```html
+<!-- Wrong -->
+<ul class="menu">
+  <li class="menu--item">...</li>
+  <li class="menu_item">...</li>
+</ul>
+
+<!-- Correct -->
+<ul class="menu">
+  <li class="menu__item">...</li>
+  <li class="menu__item">...</li>
+</ul>
+```
+
+</details>
+<details>
+  <summary>Using a Modifier Without the Belonging Class</summary>
+
+> A modifier **must not** be used without the class it modifies.
+
+```html
+<!-- Wrong -->
+<ul class="menu--mobile">
+  <li class="menu__item--active">...</li>
+</ul>
+
+<!-- Correct -->
+<ul class="menu menu--mobile">
+  <li class="menu__item menu__item--active">...</li>
+</ul>
+```
+
+</details>
+<details>
+  <summary>Using a Block Modifier on an Element</summary>
+
+> A block modifier **must not** be used on the block's elements.
+
+```html
+<!-- Wrong -->
+<ul class="menu">
+  <li class="menu__item menu--active">...</li>
+</ul>
+
+<!-- Correct -->
+<ul class="menu">
+  <li class="menu__item menu__item--active">...</li>
+</ul>
+```
+
+</details>
+<details>
+  <summary>Using a Modifier Without a Prefix</summary>
+
+> An element modifier **must** be preceded by the name of the element, the same is true for block modifiers.
+
+```html
+<!-- Wrong -->
+<nav class="nav fixed">
+  <a class="nav__link active" href="#">
+    Wrong
+  </a>
+</nav>
+
+<!-- Correct -->
+<nav class="nav nav--fixed">
+  <a class="nav__link nav__link--active" href="#">
+    Correct
+  </a>
+</nav>
+```
+
+</details>
+<details>
+  <summary>Using an Element Inside Another Block</summary>
+
+> An element of the parent block **must not** be used inside a child block.
+
+```html
+<div class="parent">
+  <!-- Wrong -->
+  <div class="child">
+    <p class="parent__element">Text</p>
+  </div>
+  
+  <!-- Correct -->
+  <div class="child parent__element">
+    <p class="child__element">Text</p>
+  </div>
+</div>
+```
+
+</details>
+<details>
+  <summary>Using an Element Outside a Block</summary>
+
+> An element **must not** be used outside the block it belongs to.
+
+```html
+<!-- Wrong -->
+<div class="block">
+  Content
+</div>
+
+<p class="block__element">Text</p>
+
+<!-- Correct -->
+<div class="block">
+  <p class="block__element">Text</p>
+</div>
+```
+
+</details>
+<details>
+  <summary>Using Different Naming Conventions Within One Project</summary>
+
+> Using different [naming conventions](https://en.bem.info/methodology/naming-convention/) within one project is not allowed.
+
+```html
+<!-- Wrong -->
+<div class="ParentBlock ParentBlock_mobile">
+  <div class="child-block child-block--active ParentBlock-element"></div>
+</div>
+
+<!-- Correct -->
+<div class="ParentBlock ParentBlock_mobile">
+  <div class="ChildBlock ChildBlock--active ParentBlock-element"></div>
+</div>
+
+<!-- Correct -->
+<div class="parent-block parent-block--mobile">
+  <div class="child-block child-block--active parent-block__element"></div>
+</div>
+```
 </details>
 
-### 11. Update `DEMO LINK` and `TEST REPORT LINK`
-- Open the `readme.md` file.
-- Replace the text `<your_account>` with your GitHub username in the `DEMO LINK` and `TEST REPORT LINK`.
-
-![Update demo link](./images/update-demo-link.png)
-
-### 12. Implement the task described in the `readme.md`. 
-
-You should write the code in `index.html` and other files inside the `src` folder.
-
-### 13. `npm run lint` to Check the Code Style
-Run:
-```
-npm run lint
-```
+### Typical BEM Mistakes in CSS
 
 <details>
-  <summary><b>If you have some errors</b></summary>
+  <summary>Styling an Element in the Context of Another Element</summary>
 
-  - Fix all the errors and run the command again.
+> Styles of one element **must not** depend on its relations with other elements.
 
-  ![Linter errors](./images/linter-errors.png)
-</details>
-
-<details>
-  <summary><b>How to find the lines with linter errors</b></summary>
-
-  ![The lines with errors](./images/lines-with-linter-errors.png)
-</details>
-
-<details>
-  <summary><b>This error means you need to fix CRLF</b></summary>
-
-  ![CRLF linter error](./images/crlf-linter-error.png)
-
-  - Run `git config --global core.autocrlf false`.
-  - Then, fix the CRLF in all the files you changed.
-
-  ![CRLF in current file](./images/crlf-error-after-global-config.png)
-</details>
-
-<details>
-  <summary><b>How to fix autoformatting in VSCode</b></summary>
-
-  - Here is [the documentation](https://code.visualstudio.com/docs/languages/html#_formatting). 
-  - Run `Alt + Shift + F` to format the document.
-
-  ![HTML autoformat settings](./images/html-autoformat-settings.png)
-  ![HTML autoformat json](./images/html-autoformat-json.png)
-</details>
-
-### 14. `npm test` to Check if Solution is Correct
-- Read the `checklist.md`;
-- Fix your code if needed;
-- Run `npm run lint` again to ensure nothing is broken.
-- Run the tests:
-    ```
-    npm test
-    ```
-- Test results should be opened in a browser;
-- If not, check if you fixed all the code style errors (`npm run lint`).
-
-#### If you see a failing test
-
-Fix your HTML and CSS to make your page identical to the expected result.
-
-![Failed tests](./images/failed-tests.png)
-![How to compare a test with reference](./images/how-to-compare-test-with-reference.png)
-
-#### If you need to debug tests
-- [Open this DOC](layout-tests.md)
-
-> If you can't run tests for some reason, just use a screenshot from
-  `backstop_data/bitmaps_reference/Entire_document.png` to ensure your page looks as expected.
-
-### 15. `git add` to Prepare Changed Files for Saving
-```
-git add ./src
-```
-- Don't add irrelevant files at this point, like `package-lock.json` or test snapshots.
-- You can always check which files were changed or added using the `git status` command.
-- Also, don't forget to add the readme.md file.
-```
-git add readme.md
+```html
+<ul class="nav__list">
+  <li class="nav__item"></li>
+</ul>
 ```
 
-### 16. `git commit` to Save Changes
+```css
+/* Wrong */
+.nav__list .nav__item {
+  padding: 0;
+}
 
-Run the `commit` with a message describing what this code does.
-
-```
-git commit -m 'add task solution'
-```
-
-<details>
-  <summary><b>fatal: unable to auto-detect email address</b></summary>
-
-  - It means you forgot to configure your GIT name and email.
-  - See the commands above the error message and run them one by one with your email and name.
-
-  ![If you forgot to set GIT name and email](./images/forgot-to-configure-git.png)
-  ![Set GIT name and email](./images/set-git-name-and-email.png)
-</details>
-
-<details>
-  <summary><b>no changes added to commit</b></summary>
-
-  ![No changes added to commit](./images/no-changes-added-to-commit.png)
-</details>
-
-<details>
-  <summary><b>LF will be
-
- replaced with CRLF</b></summary>
-
-  - You forgot to fix CRLF.
-
-  ![Forgot to fix CRLF](./images/forgot-to-fix-crlf.png)
-</details>
-
-### 17. `git push origin develop` to send your code to GitHub
-Run:
-```
-git push origin develop
+/* Correct */
+.nav__item {
+  padding: 0;
+}
 ```
 
-<details>
-  <summary><b>failed to push some refs</b></summary>
-
-  ![Forgot to create develop](./images/forgot-to-create-develop.png)
-  ![Reset and create develop](./images/reset-head-and-create-develop.png)
-
-  - Commit changes again after creating the `develop` branch. 
 </details>
-
 <details>
-  <summary><b>If you are asked for Authorization</b></summary>
+  <summary>Styling an Element Depending on its Context</summary>
 
-  ![GitHub auth popup](./images/github-auth-popup.png)
-  ![Authorize GIT credentials manager](./images/authorize-git-credentials-manager.png)
-  ![Push success](./images/push-success.png)
-</details>
+> Styles of an element **must not** depend on the state of another element.
+> **BUT** styling can depend on the state of the block.
 
-<details>
-  <summary><b>fatal: unable to access</b></summary>
-
-  ![Permission denied](./images/permissions-denied.png)
-  ![Add correct origin](./images/add-correct-origin.png)
-</details>
-
-### 18. `npm run deploy` to Publish to GitHub Pages.
-Run:
-```
-npm run deploy
+```html
+<ul class="nav__list nav__list--active">
+  <li class="nav__item"></li>
+</ul>
 ```
 
-> If you are getting some errors, run `npm run deploy -- -l` to see more details.
+```css
+/* Wrong */
+.nav__list--active .nav__item {
+  padding: 0;
+}
 
-The deploy process requires some time to prepare your page on GitHub after the command is finished.
+/* Correct */
+.nav--active .nav__link { /* Can be styled based on the state of the block */
+  padding: 0;
+}
 
-To check if the page was deployed successfully, you need to check in the project settings on GitHub:
-- Open the forked repo on GitHub;
-- Click the `Settings` tab at the top;
-- Choose the `Pages` section from the panel on the left;
-- There should be a link to your public page at the top (the same as your `DEMO LINK` in the `readme.md`).
-- If there is no link at the top, check if the `gh-pages` branch appeared in the repo;
-  - If not, run `npm run deploy -- -l` to see more details.
-- Wait for about 2 minutes and reload the `Settings > Pages` again to see the link;
-- Open it to see your page.
+.nav:hover .nav__link {
+  padding: 0;
+}
+```
 
-### 19. Create a Pull Request (PR)
-- Select the `Pull Requests` tab;
-- Click the `New pull request` green button;
-- Change the `compare` branch on the right to `develop`;
-- Click the `Create pull request` button;
-- Copy the `DEMO LINK` and `TEST REPORT LINK` from `readme.md` to the PR description;
-  - Links should contain your GitHub name (not `mate-academy`)!!!
-- Click the `Create pull request` button one more time;
-- Check that your `DEMO LINK` and `TEST REPORT LINK` work as expected (open the page and test results);
-- Check if the task appeared in the table (only for full-time students).
+```html
+<nav class="nav nav--active">
+  <a class="nav__link" href="#">1</a>
+</nav>
+```
 
-![New pull request](./images/new-pull-request.png)
-![Create pull request](./images/create-pull-request.png)
-![Add DEMO Links](./images/add-demo-links.png)
-
-> ❗ Do NOT close the PR and ❗ do NOT open several PRs.
-> Only the first PR made after the fork is synced to the platform.
-
-- If you have closed the PR - reopen it and request mentor review.
-- If you can't open the PR - do another fork and create a new PR.
-
-<details>
-  <summary><b>Check your DEMO LINK</b></summary>
-
-  - You forgot to put your GitHub name into `DEMO_LINK` and `TEST_REPORT_LINK`.
-
-  ![Forgot to fix DEMO LINK](./images/forgot-to-put-your-name-to-demo-link.png)
 </details>
-
 <details>
-  <summary><b>Check your TEST REPORT LINK</b></summary>
+  <summary>Increasing an Element Specificity</summary>
 
-  - You forgot to run tests before `npm run deploy`.
+> You **must not** add the block selector to an element selector not to increase specificity.
+> Element **must** always be placed inside its block in HTML.
 
-  ![Forgot to run tests before deploy](images/forgot-to-run-tests-before-deploy.png)
+```html
+<nav class="nav">
+  <ul class="nav__list">...</ul>
+</nav>
+```
+
+```css
+/* Wrong */
+.nav .nav__list {
+  padding: 0;
+}
+
+/* Correct */
+.nav__list {
+  padding: 0;
+}
+```
+
 </details>
+<details>
+  <summary>Increasing Modifier Specificity</summary>
 
-### 20. To update your PR, repeat steps 13-18 (no need to create the PR one more time).
+> You **must not** use the main class together with a modifier in a selector not to increase specificity.
+> Modifier **must** always be added in addition to the main class in CSS in HTML.
 
-> If you need an ADDITIONAL CODE REVIEW, click on the re-request button on the PR page.
-![Image of re-request button](https://user-images.githubusercontent.com/38065883/104471439-89929200-55c3-11eb-824a-596bfb8aa246.png)
+```css
+/* Wrong */
+.burger-menu.burger-menu--active {
+  background-color: transparent;
+}
 
-## Linux Users
-> If you use _Linux_, please make sure you adjusted writing permissions to let 
-scripts work without `sudo`. Correct permissions mean you don't see errors like
-`permission denied` after running commands in the terminal.
+/* Correct */
+.burger-menu--active {
+  background-color: transparent;
+}
+```
 
-## NPM Commands
-- `npm install` installs the project dependencies and runs `postinstall`
-  - This creates reference files for pixel-perfect and tests
-- `npm start` runs the server required for development and tests
-- `npm test` runs the linter and tests
-  - `npm run lint` runs the linter (code style check)
-  - `npm run test:only` runs pixel-perfect tests
-- `npm run deploy` publishes the page and test report to `gh-pages`
+</details>
+<details>
+  <summary>Styling a Block in the Context of Another Block</summary>
 
-## Useful Links
-- [How to Understand and Debug Layout Tests](layout-tests.md)
-- [HTML, CSS Code Style Rules](html-css-code-style-rules.md)
-- [Working with Figma](./figma.md)
-- [Useful GIT Commands](https://mate-academy.github.io/fe-program/tools/git/useful-commands)
-- [Terminal Commands](https://mate-academy.github.io/fe-program/tools/terminal/useful-commands)
-- [Creating a Pull Request from a Fork](https://help.github.com/en/articles/creating-a-pull-request-from-a-fork)
+> The styles of a block **must not** depend on where it is located.
+
+```html
+<div class="parent">
+  <div class="child"></div>
+</div>
+```
+
+```css
+/* Wrong */
+.parent .child {
+  margin-bottom: 10px;
+}
+
+/* Correct */
+.parent__element { /* use mix */
+  margin-bottom: 10px;
+}
+```
+
+```html
+<div class="parent">
+  <div class="child parent__element"></div>
+</div>
+```
+
+</details>
+<details>
+  <summary>Setting the Block's External Geometry or Positioning</summary>
+
+> A block **must not** set its position or have margins.
+
+```html
+<div class="parent">
+  <div class="child">...</div>
+</div>
+```
+
+```css
+/* Wrong */
+.child {
+  position: absolute;
+  top: 0;
+  margin: 10px;
+  padding: 10px;
+}
+
+/* Correct */
+.parent__element { /* use mix */
+  position: absolute;
+  top: 0;
+  margin: 10px;
+}
+
+.child {
+  padding: 10px;
+}
+```
+
+```html
+<div class="parent">
+  <div class="child parent__element">...</div>
+</div>
+```
+</details>
